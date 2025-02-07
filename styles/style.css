@@ -1,0 +1,524 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+    margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+    text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+    color: currentColor;
+    font-size: var(--fs-normal);
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    border: none;
+}
+
+input::placeholder {
+    font-size: var(--fs-btn) !important;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+    width: 100%;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+  
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+}
+
+:root {
+    --base-black    : #111111;
+    --base-white    : #ffffff;
+    --base-one      : rgb(244,114,27);
+    --section-color : #FFF7ED;
+    --low-ash       : #777576;
+
+    --max-window : 980px;
+    --fw-300     : 300;
+    --fw-400     : 400;
+    --fw-500     : 500;
+    --fw-600     : 600;
+    --fw-700     : 700;
+    --fw-900     : 900;
+    --fs-main    : 4rem;
+    --fs-btn     : 0.9rem;
+    --fs-normal  : 1.125rem;
+    --fs-icon    : 1.25rem;
+    --fs-title   : 2.5rem;
+}
+
+/* Utility */
+.container{
+    max-width: var(--max-window);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.active-link {
+    color: var(--base-one);
+    font-weight: var(--fw-600);
+}
+
+.btn-normal {
+    width: 150px;
+    padding: 7px 0;
+    border-radius: 25px;
+    outline: none;
+    background-color: var(--base-one);
+    color: var(--base-white);
+    position: relative;
+    font-weight: var(--fw-600);
+    z-index: 2;
+    font-size: var(--fs-btn);
+}
+
+.boom-effect {
+    animation: boom 1.2s ease-in-out infinite;
+}
+
+.flex-container {
+    display: flex;
+    align-items: var(--alignItems,center);
+    justify-content: var(--justifyContent,center);
+}
+
+.title{
+    font-weight: var(--fw-600);
+    font-size: var(--fs-title);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes boom {
+    0% { transform: scale(1) } 
+    50% { transform: scale(1.1) } 
+    100% { transform: scale(1) }
+}
+
+/* Head Section */
+header{
+    background-color: var(--base-black);
+    color: var(--base-white);
+    padding: 20px;
+    height: 10vh;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+}
+
+.logo {
+    width: 200px;
+}
+
+nav ul li {
+    margin-right: 20px;
+    transition: transform .3s ease-in;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+.hamburger {
+    display: none;
+    font-size: var(--fs-icon);
+    cursor: pointer;
+}
+
+.hamburger .fa-bars{
+    transition: transform .3s ease-in;
+}
+
+nav ul li:hover, .hamburger .fa-bars:hover, .close-menu .fa-xmark:hover {
+    transform: scale(1.1);
+}
+
+.mobile-view-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.mobile-view-nav .area{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba( 255, 255, 255, .97 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    transition: transform .5s ease-in;
+    transform: translateX(100%);
+}
+
+.mobile-view-nav.open{
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-view-nav.open .area {
+    transform: translateX(0);
+}
+
+.mobile-view-nav ul li {
+    margin: 15px 0;
+}
+
+.mobile-view-nav ul li:not([class]) a {
+    color: var(--base-black);
+}
+
+.close-menu {
+    font-size: var(--fs-icon);
+    cursor: pointer;
+    color: var(--base-black);
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+}
+
+.close-menu .fa-xmark {
+    transition: transform .3 ease-in;
+}
+
+/* Header Responsiveness */
+@media only screen and (max-width: 980px) {
+    .hamburger {
+        display: block;
+    }
+
+    .web-view-nav {
+        display: none;
+    }
+
+    .head-area {
+        height: auto !important;
+    }
+
+    :root {
+     --fs-main    : 3rem; 
+     --max-window : 800px;
+    }
+}
+
+/* Main */
+main {
+    margin-top: 10vh;
+    position: relative;
+}
+
+.bgImg {
+    height: 90vh;
+    background: url('../assets/images/aeroBg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+.bgImg h2 {
+    position: relative;
+    font-weight: var(--fw-500);
+    font-size: var(--fs-main);
+    color: var(--base-white);
+    user-select: none;
+    z-index: 2;
+    text-transform: uppercase;
+    text-shadow: -2px 0px 4px rgba(255,255,255,0.89);
+}
+
+.bgImg h2, button {
+    margin-top: -1000%;
+}
+
+.head-area {
+    overflow: hidden;
+    height: 300px;
+}
+
+/* Main Ends */
+
+/* About Section */
+#about, #team, #chairman_msg, #contact {
+    min-height: min(100vh, auto);
+    padding: 100px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.img-container, .details-container{
+    /* width: 50%; */
+    flex: 1 1 50%;
+}
+
+.img-card {
+    width: 250px;
+    height: 100px;
+}
+
+.img-card:not(:last-child) {
+    margin-bottom: 500px;
+}
+
+.content h3 {
+    margin: 20px 0;
+    font-weight: var(--fw-500);
+    text-decoration: underline;
+    color: var(--base-one);
+}
+
+.content p > div { 
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgb(37, 66, 37) 50%
+    );
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: rgba(255, 255, 255, 0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: var(--fs-btn);
+    display: inline;
+    opacity: 0;
+    transition: opacity 0.5s ease-out, color 0.5s ease-out;
+}
+  
+
+@media only screen and (max-width: 980px) {
+    .about-section {
+        flex-direction: column;
+    }
+
+    .img-container, .details-container {
+        width: 100%;
+    }
+
+    .img-container{
+        display: none;
+    }
+
+    .img-card:not(:last-child) {
+        margin-bottom: 50px;
+    }
+
+    #about, #team, #chairman_msg, #contact {
+        padding: 20px 0;
+    }
+}
+
+/* About Ends */
+/* Team Section */
+#team {
+    background-color: var(--section-color);
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 70px;
+}
+
+.card {
+    width: 200px;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.card-head {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-head img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.card-body {
+    padding: 5px;
+}
+
+.card-body h3 {
+    font-size: var(--fs-btn);
+    font-weight: var(--fw-400);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-body h6 {
+    font-weight: var(--fw-300);
+    color: var(--low-ash);
+}
+/* Team Ends */
+
+/* Chariman's Message */
+.reagrds{
+    float: right;
+    margin-top: 10px;
+}
+
+/* Chairman's message ends */
+
+/* Career */
+#career, footer {
+    min-height: 10vh;
+    background-color: var(--section-color);
+}
+
+.mail a{
+    color: var(--base-one);
+}
+/* Career ends */
+
+/* Contact */
+.contact-form {
+    display: grid;
+    place-items: center;
+    margin-top: 25px;
+}
+
+form input, textarea {
+    border: 1px solid var(--base-one);
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: var(--fs-btn);
+}
+
+textarea {
+    resize: none;
+    width: 100% !important;
+}
+/* Contact ends */
