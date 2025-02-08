@@ -17,10 +17,33 @@ hamburger.addEventListener('click',(e) =>{
 })
 
 // Click event for each mob menus
-mobile_nav_list.forEach((menu)=>{
+// Function to remove active class from all items
+function removeActiveClass() {
+  mobile_nav_list.forEach((item) => {
+    if (item.classList.contains('active-link')) {
+      item.classList.remove('active-link');
+      item.querySelector('a').style.color = "var(--base-black)"; // Reset color
+    }
+  });
+}
+
+// Add event listener to each menu item
+mobile_nav_list.forEach((menu) => {
+  menu.addEventListener('click', (e) => {
+    // Remove active class from all before adding to the clicked one
+    removeActiveClass();
+    // Close mobile menu
+    mob_area.classList.remove('open');
+    // Add active class to the clicked menu item
+    menu.classList.add('active-link');
+  });
+});
+
+web_nav_list.forEach((menu)=>{
   menu.addEventListener('click',(e)=>{
     // e.preventDefault();
-    mob_area.classList.remove('open')
+    web_nav_list.forEach((item) => item.classList.remove('active-link'));
+    menu.classList.add('active-link')
   })    
 })
 
