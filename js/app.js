@@ -50,19 +50,18 @@ window.addEventListener("resize", (e) => {
 });
 
 // About sections
-gsap.registerPlugin(ScrollTrigger, SplitText);
-
-// Select and split text into individual lines
-const split = new SplitText(".content p", { type: "lines" });
+gsap.registerPlugin(ScrollTrigger);
+const splitTypes = document.querySelectorAll('.content p')
 // Animate each line on scroll
-split.lines.forEach((target) => {
-  gsap.to(target, {
+splitTypes.forEach((char, i) => {
+  const text = new SplitType(char, { types : 'chars' })
+  gsap.to(text.chars, {
     opacity: 1,
     color: "rgba(0, 0, 0, 1)",
     backgroundPositionX: 0,
     ease: "none",
     scrollTrigger: {
-      trigger: target,
+      trigger: char,
       scrub: 1,
       start: "top 90%",
       end: "bottom bottom"
@@ -75,8 +74,8 @@ split.lines.forEach((target) => {
 gsap.timeline({
   scrollTrigger: {
     trigger: '.cards',
-    start: window.innerWidth < 968 ? "top 80%" : "top center", 
-    end: "bottom bottom", 
+    start: window.innerWidth < 968 ? "top 90%" : "top center", 
+    end: "bottom 20", 
     scrub : true,  
   },
   defaults: {
