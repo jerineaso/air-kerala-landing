@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded',(e)=>{
     var tl = gsap.timeline()
     tl.from('.logo',  { opacity: 0, y: '-100%', duration: 1},0)
     tl.from(hamburger, { opacity: 0, y: '-100%', duration: 1},0)
-    tl.fromTo(web_nav_list, { y: -100 , opacity : 0.3 }, { duration: .3, y: 0 , opacity : 1, delay : .3, clearProps: "transform" },0);
+    tl.from(web_nav_list, { y: '-100%' , opacity : 0, duration:1, clearProps: "transform" },0);
     tl.to('.bgImg h2', { opacity : 1, marginTop : 0, duration : 1 },0)
     tl.to('.bgImg button', { opacity : 1, marginTop : 0, duration : 1 },0)
 })
@@ -114,23 +114,23 @@ splitTypes.forEach((char, i) => {
 gsap.timeline({
   scrollTrigger: {
     trigger: '.cards',
-    start: window.innerWidth < 968 ? "top 90%" : "top center", 
+    start: window.innerWidth < 968 ? "top top" : "top center", 
     end: "bottom 20", 
-    scrub : true,  
+    scrub : true, 
   },
   defaults: {
     duration: 0.9,
     ease: "power1.inOut"
   }
 })
+.from(".cards .card", { opacity: 0 }, 0)
 .to(".cards .card", { opacity: 1, stagger: 0.2 })  
-.from(".cards .card", { opacity: 0 }, 0); 
 
 
 // Contact
 gsap.timeline({
   scrollTrigger: {
-    trigger: '.contact-form',
+    trigger: '.form-elements',
     start: window.innerWidth < 968 ? "top 80%" : "top center", 
     end: "bottom bottom", 
     scrub: true,      
@@ -140,8 +140,8 @@ gsap.timeline({
     ease: "power1.inOut"
   }
 })
-.to(".contact-form .form-item", { opacity: 1, stagger: 0.3 })  
-.from(".contact-form .form-item", { opacity: 0 }, 0); 
+.from(".form-elements .form-item", { opacity: 0 }, 0)
+.to(".form-elements .form-item", { opacity: 1, stagger: 0.3 })  
 
 // Year for footer
 let date = new Date().getFullYear()

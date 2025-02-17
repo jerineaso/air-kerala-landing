@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Background Image Load -->
     <link rel="preload" href="./assets/images/aeroBg.jpg" as="image" type="image/jpg" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.20/dist/lenis.css"> 
 </head>
 <body>
     <!-- Head Section -->
@@ -238,17 +239,19 @@
             <div class="title">Keep in touch</div>
             <div class="contact-form">
                 <form action="">
-                    <div class="name form-item">
-                        <input type="text" placeholder="Your name">
+                    <div class="form-elements">
+                        <div class="name form-item">
+                            <input type="text" placeholder="Your name">
+                        </div>
+                        <div class="phone form-item">
+                            <input type="text" inputmode="numeric" placeholder="Your phone number">
+                        </div>
+                        <div class="email form-item">
+                            <input type="text" inputmode="email" placeholder="Your email address">
+                        </div>
+                        <textarea name="comments" class="form-item" id="comments" placeholder="Your message"></textarea>
+                        <button type="button" class="btn-normal cursor form-item">Submit form</button>
                     </div>
-                    <div class="phone form-item">
-                        <input type="text" inputmode="numeric" placeholder="Your phone number">
-                    </div>
-                    <div class="email form-item">
-                        <input type="text" inputmode="email" placeholder="Your email address">
-                    </div>
-                    <textarea name="comments" class="form-item" id="comments" placeholder="Your message"></textarea>
-                    <button type="button" class="btn-normal cursor form-item">Submit form</button>
                 </form>
             </div>
         </div>
@@ -260,7 +263,7 @@
     </footer>
     <!-- Contact Ends-->
     <!-- GSAP -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script> 
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
