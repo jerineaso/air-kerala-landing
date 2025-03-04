@@ -160,7 +160,9 @@ textarea:not([rows]) {
 }
 
 .boom-effect {
-    animation: boom 1.2s ease-in-out infinite;
+    color: var(--base-one);
+    z-index: 2;
+    position: relative;
 }
 
 .flex-container {
@@ -313,7 +315,7 @@ main {
 
 .bgImg {
     height: 90vh;
-    background: url('../assets/images/aeroBg.jpg');
+    background: url('../assets/images/aeroBg.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -341,7 +343,7 @@ main {
     user-select: none;
     z-index: 2;
     text-transform: uppercase;
-    text-shadow: -2px 0px 4px rgba(255,255,255,0.89);
+    /* text-shadow: -2px 0px 4px rgba(255,255,255,0.89); */
 }
 
 .bgImg h2, button {
@@ -382,7 +384,6 @@ main {
 .content h3 {
     margin: 20px 0;
     font-weight: var(--fw-500);
-    text-decoration: underline;
     color: var(--base-one);
 }
 
@@ -464,7 +465,7 @@ main {
 }
 
 .card-body {
-    padding: 5px;
+    padding: 10px;
 }
 
 .card-body h3 {

@@ -9,29 +9,30 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded",()=>{
   'use strict';
-  // Lenis Smooth Scroll
-  // Initialize a new Lenis instance for smooth scrolling
-  // const initSmoothScrolling = () => {
-  //   const lenis = new Lenis({
-  //     duration : 1.2,
-  //     lerp : 0.15,
-  //     smoothWheel : true
-  //   });
-  //   function raf(time) {
-  //     lenis.raf(time);
-  //   }
-  //   gsap.ticker.add(raf);
-    
-  //   // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-  //   lenis.on('scroll', ScrollTrigger.update);
-  //   // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-  //   // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-  //   gsap.ticker.add((time) => {
-  //     lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-  //   });
-  //   // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-  //   gsap.ticker.lagSmoothing(0);
-  // }
+
+  // Scrollspy
+  const navbarLinks = document.querySelectorAll('.web-view-nav ul li'); 
+  const sections = document.querySelectorAll('main, section'); // Include main
+  
+  window.addEventListener('scroll', function () {
+      const currentPos = window.scrollY;
+      sections.forEach(function (section) {
+          const sectionTop = section.offsetTop - 50;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+  
+          if (currentPos >= sectionTop && currentPos < sectionTop + sectionHeight) {
+              navbarLinks.forEach(function (navbarLink) {
+                  navbarLink.classList.remove('active-link');
+              });
+  
+              // Select links in both web and mobile menus
+              document.querySelectorAll('.web-view-nav ul li a[href="#' + sectionId + '"]')
+                .forEach(link => link.parentElement.classList.add('active-link'));
+          }
+      });
+  });
+  
 
   const scrollPage = () => {
     var tl = gsap.timeline();
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     tl.from(hamburger, { opacity: 0, y: '-100%', duration: 1},0)
     tl.from(web_nav_list.children, { opacity : 0, x: 0 , duration:1, delay:0.3, stagger:0.3, clearProps: "transform" },0);
     tl.to('.bgImg h2', { opacity : 1, marginTop : 0, duration : 1 },0)
-    tl.to('.bgImg button', { opacity : 1, marginTop : 0, duration : 1 },0)
+    tl.to('.bgImg h3', { opacity : 1, marginTop : 0, duration : 1 },0)
 
     // For each TITLE
     document.querySelectorAll('.title').forEach((title)=>{
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       }
     })
     .from(".cards .card", { opacity: 0 }, 0)
-    .to(".cards .card", { opacity: 1, stagger: 0.2 })  
+    .to(".cards .card", { opacity: 1, stagger: 0.2 },0)  
 
     // Contact
     gsap.timeline({
